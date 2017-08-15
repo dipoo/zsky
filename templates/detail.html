@@ -105,7 +105,7 @@
             <div class="like">
               <span>
 {%for tag in tags%}
-              <a class="like-word" href="{{url_for('search_results',query=tag.tag,page=1)}}" target="_blank">{{tag.tag}}</a>      
+              <a class="like-word" href="{{url_for('search_results',query=tag.tag,category=0,order=0,page=1)}}" target="_blank">{{tag.tag}}</a>      
 {% endfor %}
               </span>
         </div>
@@ -150,7 +150,7 @@
             <div class="slist2">
               <ul>
 {%for fenci in fenci_list%}
-<a href="{{url_for('search_results',query=fenci,page=1)}}" target="_blank">{{fenci.encode('utf8')}}</a>&nbsp;&nbsp;
+<a href="{{url_for('search_results',query=fenci,category=0,order=0,page=1)}}" target="_blank">{{fenci.encode('utf8')}}</a>&nbsp;&nbsp;
 {% endfor %}
 </ul>
             </div>
