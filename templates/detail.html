@@ -7,67 +7,117 @@
   <meta name="applicable-device" content="pc,mobile">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
-  <title>{{query}} -{{sitename}} -磁力搜索引擎</title> 
-  <meta name="keywords" content="{{query}},{{query}}下载,{{query}}种子,{{query}}BT种子 ,磁力链接,种子搜索,BT种子,种子搜索神器,磁力搜索,BT搜索,磁力搜,磁力链,磁力链接搜索,BT种子搜索" /> 
-  <meta name="description" content="{{query}}磁力链接,{{query}}BT种子迅雷下载,{{query}}百度云在线播放下载。{{query}}的热门磁力资源! 磁力链接搜索引擎,BT种子磁力链接的最佳种子搜索神器。" /> 
+  <title>{{hash.name}} -{{sitename}}-磁力搜索引擎</title> 
+  <meta name="keywords" content="{{hash.name}} , 磁力链接,种子搜索,BT种子,种子搜索神器,磁力搜索,BT搜索,磁力搜,磁力链,磁力链接搜索,BT种子搜索" /> 
+  <meta name="description" content="BT提供{{hash.name}}的磁力链接下载与迅雷链接下载。" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" /> 
-  <link rel="shortcut icon" href="{{url_for('static', filename='favicon.ico')}}"/>
-  <link rel="icon" href="{{url_for('static', filename='favicon.ico')}}"/>
-  <link type="text/css" rel="stylesheet" href="{{url_for('static', filename='muerbt.css')}}" /> 
+  <link rel="shortcut icon" href="{{url_for('static',filename='favicon.ico')}}"/>
+  <link rel="icon" href="{{url_for('static',filename='favicon.ico')}}"/>
+  <link type="text/css" rel="stylesheet" href="{{url_for('static',filename='muerbt.css')}}" /> 
  </head> 
  <body> 
   <div class="wrapper">
 <div class="mt15"></div>
   <div class="p-wrapper">
-    <div class="bobologo mb15"><a href="/"><img src="{{url_for('static', filename='muerbt.png')}}" alt="磁力搜索 BT种子搜索利器 免费下载BT种子，超4000万条种子数据" /></a></div>
+    <div class="bobologo mb15"><a href=/"><img src="{{url_for('static',filename='muerbt.png')}}" alt="MuerBT磁力搜索 BT种子搜索利器 免费下载BT种子，超4000万条种子数据" /></a></div>
     <div class="searchbox">
-      <form action="{{url_for('search',category=0,query=query,page=1)}}" name="search" id="searchFrom" method="post" onsubmit="return submitForm(this);" >
+      <form action="{{url_for('search')}}" name="search" id="searchFrom" method="post" onsubmit="return submitForm(this);" >
         <div class="search">
-    {{form.hidden_tag()}}
+{{form.hidden_tag()}}
           <div class="sbtn"><button value="磁力搜索" type="submit" >磁力搜索</button></div>
 <div class="wd" >
-{{form.search(id="search",placeholder="输入关键词搜索BT种子...",autocomplete = "on" ,autofocus="autofocus")}}   
-    </div>
+{{form.search(id="search",placeholder="输入关键词搜索BT种子...",autocomplete = "on" ,autofocus="autofocus")}}
+        </div>
       </form>
     </div>
-
-
+     <div class="bt_title"><h2>{{hash['name'].encode('utf8')}}</h2></div>
     <div class="tbox">
-      <div class="msg">
-        <span>为您找到约<span class="orange"> {{counts}} </span>个磁力链接/BT种子，耗时 {{(taketime*1000)|int}} 毫秒。</span><span>
-        </span>
+      <div class="ssbox">
+        <div class="title"><h3>磁力链接/BT种子名称</h3></div>
+        <div class="content">
+<b>{{hash['name'].encode('utf8')}}</b>
+        </div>
       </div>
     </div>
-    <div class="tbox sort-box">
-      <div class="sortbar">
-        <span class="l-title">分类：</span>
- {% if category==0 %}  <a href="{{url_for('search_results',query=query,category=0,order=order,page=1)}}" class="active">{%else%}<a href="{{url_for('search_results',query=query,category=0,order=order,page=1)}}">{%endif%} 全部</a>
- {% if category==1 %}  <a href="{{url_for('search_results',query=query,category=1,order=order,page=1)}}" class="active">{%else%}<a href="{{url_for('search_results',query=query,category=1,order=order,page=1)}}">{%endif%} 影视</a>
- {% if category==2 %}  <a href="{{url_for('search_results',query=query,category=2,order=order,page=1)}}" class="active">{%else%}<a href="{{url_for('search_results',query=query,category=2,order=order,page=1)}}">{%endif%} 音乐</a>
- {% if category==3 %}  <a href="{{url_for('search_results',query=query,category=3,order=order,page=1)}}" class="active">{%else%}<a href="{{url_for('search_results',query=query,category=3,order=order,page=1)}}">{%endif%} 图像</a>
- {% if category==4 %}  <a href="{{url_for('search_results',query=query,category=4,order=order,page=1)}}" class="active">{%else%}<a href="{{url_for('search_results',query=query,category=4,order=order,page=1)}}">{%endif%} 文档书籍</a>
- {% if category==5 %}  <a href="{{url_for('search_results',query=query,category=5,order=order,page=1)}}" class="active">{%else%}<a href="{{url_for('search_results',query=query,category=5,order=order,page=1)}}">{%endif%} 压缩文件</a>
- {% if category==6 %}  <a href="{{url_for('search_results',query=query,category=6,order=order,page=1)}}" class="active">{%else%}<a href="{{url_for('search_results',query=query,category=6,order=order,page=1)}}">{%endif%} 安装包</a>
- {% if category==7 %}  <a href="{{url_for('search_results',query=query,category=7,order=order,page=1)}}" class="active">{%else%}<a href="{{url_for('search_results',query=query,category=7,order=order,page=1)}}">{%endif%} 其他</a>
-      </div>
-      <div class="sortbar">
-        <span class="l-title">排序：</span>
- {% if order==0 %} <a href="{{url_for('search_results',query=query,category=category,order=0,page=1)}}" class="active">{%else%}<a href="{{url_for('search_results',query=query,category=category,order=0,page=1)}}">{%endif%} 相关程度</a>
- {% if order==3 %} <a href="{{url_for('search_results',query=query,category=category,order=3,page=1)}}" class="active">{%else%}<a href="{{url_for('search_results',query=query,category=category,order=3,page=1)}}">{%endif%}热度</a>
-{% if order==1 %} <a href="{{url_for('search_results',query=query,category=category,order=1,page=1)}}" class="active">{%else%}<a href="{{url_for('search_results',query=query,category=category,order=1,page=1)}}">{%endif%}文件大小</a>
-{% if order==2 %} <a href="{{url_for('search_results',query=query,category=category,order=2,page=1)}}" class="active">{%else%}<a href="{{url_for('search_results',query=query,category=category,order=2,page=1)}}">{%endif%}添加时间</a>
-{% if order==4 %} <a href="{{url_for('search_results',query=query,category=category,order=4,page=1)}}" class="active">{%else%}<a href="{{url_for('search_results',query=query,category=category,order=4,page=1)}}">{%endif%}最近访问</a>
+
+    <div class="tbox">
+      <div class="ssbox">
+        <div class="title"><h3>磁力链接/BT种子简介</h3></div>
+        <div class="content">
+种子哈希：<b>{{hash['info_hash']}}</b><br />
+                文件大小：<b>{% if hash['length']>1073741824 %}
+{{(hash['length']/1073741824)|round(2)}}G
+{% else %}{{(hash['length']/1048576)|round(2)}}M
+{%endif%}</b> <br />
+                已经下载：<b>{{hash['requests']}}</b>次<br />
+                下载速度：<b>极快</b><br />
+                收录时间：<b>{{hash['create_time']|todate}}</b><br />
+                最近下载：<b>{{hash['last_seen']|todate}}</b>
+        </div>
       </div>
     </div>
+
     <div class="tbox">
-    {% for hash in hashs %}  
-            <div class="ssbox">
-            <div class="title">
-                <h3><span>[{{hash['category']}}]</span><a href="{{url_for('detail',info_hash=hash.info_hash)}}" target="_blank"> {{ hash.name }} </a></h3>
+      <div class="ssbox">
+        <div class="title"><h3>分享磁力链接/BT种子</h3></div>
+        <div class="content">
+
+<div class="addthis_inline_share_toolbox_fkn6"></div>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5801fd685f6cee91" async="async"></script>
+<span class="red">亲，你知道吗？下载的人越多速度越快，赶快把本页面分享给好友一起下载吧^_^</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tbox">
+      <div class="ssbox">
+        <div class="title"><h3>磁力链接下载</h3></div>
+        <div class="content">
+<a href="magnet:?xt=urn:btih:{{hash['info_hash'] | upper}}" target="_blank" >magnet:?xt=urn:btih:{{hash['info_hash'] | upper}}</a><br/>  
+ <span class="red">复制链接到迅雷、QQ旋风进行下载，或者使用百度云离线下载。</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tbox">
+      <div class="ssbox">
+        <div class="title"><h3>下载BT种子文件</h3></div>
+        <div class="content">
+<div class="down_btn">
+                <a href="magnet:?xt=urn:btih:{{hash['info_hash'] | upper}}" target="_blank" class="btn btn-primary" >磁力链接</a>
+                {% set magneturl=("magnet:?xt=urn:btih:"~hash['info_hash'] | upper) %}
+                <a href="thunder://{{magneturl|tothunder}}" target="_blank" class="btn btn-success" >迅雷下载</a>
+                <a href="magnet:?xt=urn:btih:{{hash['info_hash'] | upper}}" target="_blank" class="btn btn-info" >QQ旋风下载</a>
+                <a href="javascript:;" onClick="copyMagnetLink()" class="btn btn-warning">复制链接</a>
+                <input  id="MagnetLink" type="hidden" value="magnet:?xt=urn:btih:{{hash['info_hash'] | upper}}">
+                <a href="http://vod.xunlei.com/mini.html?url=magnet:?xt=urn:btih:{{hash['info_hash'] | upper}}" target="_blank" class="btn btn-danger">迅雷云播</a>
+                <a href="javascript:;" onClick="start('magnet:?xt=urn:btih:{{hash['info_hash'] | upper}}')" class="btn btn-success" >迅雷看看</a>
+                <a href="http://pan.baidu.com/" target="_blank" class="btn btn-primary" >百度网盘</a>
+                </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tbox">
+      <div class="ssbox">
+        <div class="title"><h3>最近搜索</h3></div>
+        <div class="content">
+            <div class="like">
+              <span>
+{%for tag in tags%}
+              <a class="like-word" href="{{url_for('search_results',query=tag.tag,page=1)}}" target="_blank">{{tag.tag}}</a>      
+{% endfor %}
+              </span>
+        </div>
+      </div>
+    </div>
+</div>
+    <div class="tbox">
+      <div class="ssbox">
+        <div class="title"><h3>文件列表</h3>
             </div>
-
-            <div class="slist">
-                <ul>
+            <div class="slist2">
+              <ul>
 
 {% if hash['file_list']|fromjson !=none  %}
 {%for f in hash['file_list']|fromjson%}
@@ -83,72 +133,41 @@
 {%endif%}
 {% endfor %}
 {% else %}
-<li>{{hash.name}}&nbsp;<span class="lightColor">{% if hash['length']>1073741824 %}
+<li>{{hash.name}}&nbsp;<span class="cpill blue-pill">{% if hash['length']>1073741824 %}
 {{(hash['length']/1073741824)|round(2)}}G
 {% else %}{{(hash['length']/1048576)|round(2)}}M
 {%endif%}</span></li>
 {% endif  %}
-
-                </ul>
-            </div>
-            <div class="sbar">
-                <span><a href="magnet:?xt=urn:btih:{{hash['info_hash'] | upper}}&dn={{ hash.name }}" target="_blank">[磁力链接]</a></span>
-                <span>添加时间:<b>{{ hash['create_time']|todate }}</b></span>
-                <span>大小:{% if hash['length']>1073741824 %}
-<b class="cpill yellow-pill">{{(hash['length']/1073741824)|round(2)}}G</b>
-{% else %}<b class="cpill blue-pill">{{(hash['length']/1048576)|round(2)}}M</b>
-{%endif%}</span>
-                <span>最近下载:<b>{{ hash['last_seen']|todate }}</b></span>
-                <span>热度:<b>{{hash['requests']}}</b></span>
-            </div>
+</ul>
         </div>
-    {% endfor %}
+      </div>
     </div>
-    <br>
-    <div class="addthis_inline_share_toolbox_fkn6_hr58_6og9_8vf5"></div>
-    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5801fd685f6cee91" async="async"></script>
-    <span class="red f14">亲，你知道吗？下载的人越多速度越快，赶快把本页面分享给好友一起下载吧^_^</span>
-    <br>
-    <div class="pager">
-    <span>共{{pages}}页</span> 
-{% set prev_pages = page-4 if page>5 else 1 %}
-{% set next_pages = page+5 if page+5<=pages else pages%}
-    {%if pages<10%}
-{%if page==1%}
-<a href="#">上一页</a>
-{%else%}
-<a href="{{ url_for('search_results', query=query,category=category,order=order,page=page-1 )}}">上一页</a>
-{%endif%}
-{%for i in range(1,pages+1)%}
-    <a href="{{ url_for('search_results', query=query,category=category,order=order,page=i )}}">{{i}}</a>
-{%endfor%}
-{%if page<pages%}
-<a href="{{ url_for('search_results', query=query,category=category,order=order,page=page+1) }}">下一页</a>
-{%else%}
-<a href="#">下一页</a>
-{%endif%}    
-    {%else%}
-{%if page==1%}
-<a href="#">上一页</a>
-{%else%}
-<a href="{{ url_for('search_results', query=query,category=category,order=order,page=page-1 )}}">上一页</a>
-{%endif%}
-{%for i in range(prev_pages,page)%}
-    <a href="{{ url_for('search_results', query=query,category=category,order=order,page=i )}}">{{i}}</a>
-{%endfor%}
-<span>{{page}}</span>
-{%for i in range(page+1,next_pages+1)%}
-    <a href="{{ url_for('search_results', query=query,category=category,order=order,page=i )}}">{{i}}</a>
-{%endfor%}
-{%if page<pages%}
-<a href="{{ url_for('search_results', query=query,category=category,order=order,page=page+1) }}">下一页</a>
-{%else%}
-<a href="#">下一页</a>
-{%endif%}
-    {%endif%}
+
+    <div class="tbox">
+      <div class="ssbox">
+        <div class="title"><h3>你可能感兴趣</h3>
+            </div>
+            <div class="slist2">
+              <ul>
+{%for fenci in fenci_list%}
+<a href="{{url_for('search_results',query=fenci,page=1)}}" target="_blank">{{fenci.encode('utf8')}}</a>&nbsp;&nbsp;
+{% endfor %}
+</ul>
+            </div>
+          </div>
+        </div>
+
+    <div class="tbox">
+      <div class="ssbox">
+        <div class="title"><h3>版权提醒</h3></div>
+        <div class="content">
+<span class="grey f12">本站不存储任何资源内容，只收集BT种子元数据(例如文件名和文件大小)和磁力链接(BT种子标识符)，并提供查询服务，是一个完全合法的搜索引擎系统。 网站不提供种子下载服务，用户可以通过第三方链接或磁力链接获取到相关的种子资源。本站也不对BT种子真实性及合法性负责，请用户注意甄别！投诉邮箱：<a class="__cf_email__" href="/cdn-cgi/l/email-protection" data-cfemail="28455d4d5a4a5c065b4d5a5e414b4d684f45494144064b4745">hao123@hao123.com</a> </span>
+        </div>
+      </div>
     </div>
     </div>
 </div>
+
 
 {%include'footer.html'%}
 </body>
