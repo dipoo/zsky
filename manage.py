@@ -175,7 +175,7 @@ def index():
     conn.close()
     keywords=Search_Keywords.query.order_by(Search_Keywords.order).all()
     form=SearchForm()
-    return render_template('index.html',form=form,keywords=keywords,total=total)
+    return render_template('index.html',form=form,keywords=keywords,total=total,sitename=sitename)
 
 def make_cache_key(*args, **kwargs):
     path = request.path
