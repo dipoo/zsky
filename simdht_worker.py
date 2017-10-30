@@ -395,7 +395,7 @@ class Master(Thread):
         self.visited = set()
 
     def got_torrent(self):
-        utcnow = datetime.datetime.utcnow()
+        now = datetime.datetime.now()
         binhash, address, data, dtype, start_time = self.metadata_queue.get()
         if dtype == 'pt':
             self.n_downloading_pt -= 1
@@ -418,7 +418,7 @@ class Master(Thread):
         info['tagged'] = False
         info['classified'] = False
         info['requests'] = 1
-        info['last_seen'] = utcnow + datetime.timedelta(hours=8)
+        info['last_seen'] = now
         info['source_ip'] = address[0]
 
         if info.get('files'):
@@ -445,7 +445,7 @@ class Master(Thread):
             self.dbcurr.execute('INSERT IGNORE INTO search_hash(info_hash,category,data_hash,name,extension,classified,source_ip,tagged,length,create_time,last_seen,requests,comment,creator) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)',(info['info_hash'], info['category'], info['data_hash'], info['name'], info['extension'], info['classified'], info['source_ip'], info['tagged'], info['length'], info['create_time'], info['last_seen'], info['requests'], info.get('comment',''), info.get('creator','')))
             self.dbcurr.connection.commit()
             self.n_new += 1
-            print '\n', (datetime.datetime.utcnow()+ datetime.timedelta(hours=8)).strftime("%Y-%m-%d %H:%M:%S"), info['info_hash'], address[0], 'saved!'
+            print '\n', (datetime.datetime.now()).strftime("%Y-%m-%d %H:%M:%S"), info['info_hash'], address[0], 'saved!'
         except:
             print self.name, 'save search_hash error', info
             traceback.print_exc()
@@ -469,8 +469,8 @@ class Master(Thread):
             self.n_reqs += 1
             info_hash = binhash.encode('hex')
 
-            utcnow = datetime.datetime.utcnow()
-            date = (utcnow + datetime.timedelta(hours=8))
+            now = datetime.datetime.now()
+            date = (now)
             date = datetime.datetime(date.year, date.month, date.day, date.hour, date.minute, date.second)
 
             # 检查infohash是否存在
@@ -528,9 +528,9 @@ class Master(Thread):
         except:
             return None
         try:
-            info['create_time'] = datetime.datetime.fromtimestamp(float(torrent['creation date'])) + datetime.timedelta(hours=8)
+            info['create_time'] = datetime.datetime.fromtimestamp(float(torrent['creation date']))
         except:
-            info['create_time'] = datetime.datetime.utcnow() + datetime.timedelta(hours=8)
+            info['create_time'] = datetime.datetime.now()
 
         if torrent.get('encoding'):
             self.encoding = torrent['encoding']
